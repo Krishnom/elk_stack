@@ -1,0 +1,32 @@
+#Below are the steps for learning how Eleastic search works. Here we are taking example of writings of shakespears and we will perform
+1. Import schema into elasticsearch db and create index for shakes pears work
+2. Import data into the elasticsearch
+3. Perform search.
+
+
+#get the schema and create index
+wget http://media.sundog-soft.com/es7/shakes-mapping.json
+curl -XPUT -H "Content-Type: application/json" localhost:9200/shakespeare --data-binary @shakes-mapping.json
+
+
+#download data and import it.
+wget http://media.sundog-soft.com/es7/shakespeare_7.0.json
+curl -XPUT -H "Content-Type: application/json" localhost:9200/shakespeare/_bulk --data-binary @shakespeare_7.0.json
+
+#query some string
+curl -XGET -H "Content-Type: application/json" localhost:9200/shakespeare/_search?pretty -d '
+{
+"query": {
+'match_phrase':{
+"text_entry": "to be or not to be"
+}
+}
+}'
+   47  curl -XGET -H "Content-Type: application/json" localhost:9200/shakespeare/_search?pretty -d '
+{
+"query": {
+"match_phrase":{
+"text_entry": "to be or not to be"
+}
+}
+}'

@@ -1,0 +1,4 @@
+There are the key things one should know as you dive in ELK stack tools
+1. RESTful API - Elastic search data is accessed using REST APIs and all documents follow same pattern. Having knowledge of REST API will be great help. In my oppinion this is a must if you want to learn insides of ES
+2. JSON - The data from elastic search is structured in json format. Knowledge of JSON will help you understand how data is generated.
+3. ... More to come
