@@ -1,0 +1,15 @@
+Few key things to remember
+1. Every document(_doc) has a _version field
+2. Elasticsearch documents are immutable.
+3. When you update an existing document:
+	A new document is created with increamented _version field
+	the old document is marked for deletion 
+
+
+
+
+#Partial Update API
+curl -XPOST -H "Content-Type: application/json" localhost:9200/movies/_doc/<id>/_update -d {...}
+
+e.g to update movie title for movie id 109487(Intersteler), here is the request
+curl -XPOST -H "Content-Type: application/json" localhost:9200/movies/_doc/109487/_update -d '{"doc":{"title":"New Intersteller"}}'

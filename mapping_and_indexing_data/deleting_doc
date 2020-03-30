@@ -1,0 +1,8 @@
+#Deleting a doc is easy and you just need to send -XDELETE request to elastic search
+
+To delete an enty with id ID you need to fire below command
+	curl -XDELETE localhost:9200/movies/_doc/<ID>
+
+e.g. to delete the movie with id 19200, we fire below command
+	curl -XDELETE localhost:9200/movies/_doc/19200
+
