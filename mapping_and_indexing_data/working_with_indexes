@@ -1,0 +1,8 @@
+#Retrieve all index
+curl -XGET localhost:9200/_cat/indices
+
+#Create an index 
+curl -XPUT localhost:9200/custom_builds?pretty
+
+#Delete an index
+curl -XDELETE 'es.example.com:9200/custom_builds'
