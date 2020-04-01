@@ -1,7 +1,13 @@
 #Note : curl is set to alias curl -H "Content-Type: application/json"
 
+# This command create a index named custom_builds in the es.example.com:9200 ES server.
+curl -u USERNAME:PASSWORD -XPUT 'es.example.com:9200/custom_builds?pretty'
+
+
 # Create mapping 
 curl -XPUT -H "Content-Type: application/json" localhost:9200/movies -d '{"mappings":{"properties":{"year":{"type":"date"}}}}'
+
+
 
 # Import single entry 
 curl -XPOST localhost:9200/movies/_doc/109487 -d '{"genere":["Sci-Fi","IMAX"],"title":"Interstellar", "year":"2014"}'
