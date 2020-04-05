@@ -1,0 +1,23 @@
+#Pagination is used to get a subset of result. For e.g. get results from id 1 to 10 and than next 10 and so on.
+
+#Pagination syndax
+## get movie first two movies 
+curl -XGET "localhost:9200/movies/_search?size=2&pretty"  
+
+## get firt two movies starting from 2
+curl -XGET "localhost:9200/movies/_search?from=2&size=2&pretty"  
+
+
+## json format
+curl -XGET "localhost:9200/movies/_search?pretty -d '
+{
+    "from":2,
+    "size":2,
+    "query":{"match":{"genre":"Sci-Fi"}}
+}'
+
+
+#Cons of pagination
+    Deep pagination can kill performance
+    every result need to retrieved, collected and stored
+    Without an upperbound, it can lead to critical issue like user abusing the resources etc.

@@ -1,0 +1,6 @@
+#Get movies in order of their year of release
+curl -XGET -H "Content-Type: application/json" localhost:9200/movies/_search?sort=year&pretty
+
+
+Note: You cannot sort an "analyzed" field. i.e. field that are marked for indexing cannot be sorted because they are not stored "as is". 
+    To make a text sorting work, You need to add an unalyzed field(sub-field actually) in the field.

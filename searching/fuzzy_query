@@ -1,0 +1,12 @@
+#Fuzzy matches is a way to tolerate certain level of typos
+
+
+# Type of typos can be
+1. Substitution - replacing comman typo chars. for e.g. Rocket and Rockat 
+2. Insertion - Unnecessary extra chars. for e.g. Assertion and Asserrtion
+3. Deletion - ex. Intersteller and Intersteler
+All of above have an "edit distance" of 1 as there is a typo with one char. 
+"edit distance" is coming from "levenshtein edit distance" and (i have no idea about it.). Read it here https://dzone.com/articles/the-levenshtein-algorithm-1
+
+
+

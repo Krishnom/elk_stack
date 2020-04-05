@@ -1,0 +1,14 @@
+1. Search for movie "Star Wars"
+2. Search for Sci-Fi movie released before 1960 sort by title
+'{"query":{"bool":{"must":{"match":{"genre":"Sci-Fi"}},"filter":{"range":{"year": {"lt":2000}}}}}}'
+
+e.g.
+elk_curl -XGET $local_elk_url/'movie_db/_search?sort=title&pretty' -d '
+{
+    "query": {
+        "bool": {
+            "must": {"match": {"genre": "Sci-Fi"}},
+            "filter": {"range": {"year": {"lt": 2020,"gte": 2000}}}
+        }
+    }
+}

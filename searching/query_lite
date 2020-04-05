@@ -1,0 +1,19 @@
+Query Lite/URL search/ Curl Test
+
+# to search a movie with matching title "star"
+/movies/_search?q=title:star
+
+#to get movies with title having "star" and released after 2010
+/movies/_search?q=+year>2010+title:star
+
+Pros of using "Query Lite"
+    Easy to write
+    Shorthand and thus no messy json
+    with curl works perfect if whole query is enclosed in double quotes
+Cons
+    Not browser friendly. You need to URL encode all special chars
+
+    With URL encoding, It can be very cryptic. for e.g. for second query wuth URL encoded query will be 
+        /movies/_search?q=%2Byear%3A%3E2010+%2Btitle%3Astar
+
+

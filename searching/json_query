@@ -1,0 +1,51 @@
+GET request can have body as well to get a desired response
+
+query - Return data in terms of releveance
+filter -  Ask Yes/No question of your data
+
+Note : use filter where you can, They are fast and cacheable
+
+# A simple query
+curl -H "Content-Type: application/json" -XGET localhost:9200/movies/_search?pretty -d '{
+"query":{
+    "match":{
+        "title":"star"        
+    }
+}
+}'
+
+
+
+
+#Filter types
+1. term - filter by exact term
+    {"term":{"year":"2010"}}
+2. terms - match if any exact term in a list
+    {"terms":{"genre":["Sci-Fi","Action"]}}
+3. range - Find number/date in a given range
+    {"range":{"year":{"gte":"2010"}}}
+4. exists - Find documents where a field exists
+    {"exists":{"field":"tags"}}
+5. missing - Find document where a field is missing
+    {"missing":{"field":"tags"}}
+6. bool - Combine filters with boolean logic
+
+
+#Type of query
+match_all, match, multi_match, bool
+
+
+
+
+# mix of filter and query
+curl -H "Content-Type: application/json" -XGET localhost:9200/movies/_search?pretty -d '
+{
+    "query": {
+        "bool": {
+            "must":{"term":{"title":"star"}},
+            "filter":{"range": {"year":{"gte":"2010"}}}
+        }
+    }
+}'
+
+

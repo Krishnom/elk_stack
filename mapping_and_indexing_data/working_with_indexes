@@ -1,8 +1,42 @@
 #Retrieve all index
 curl -XGET localhost:9200/_cat/indices
 
-#Create an index 
+#Create an empty index 
 curl -XPUT localhost:9200/custom_builds?pretty
+
+
+#Create index with predefined mapping
+curl -XPUT -H "Content-Type: application/json" localhost:9200/custom_builds -d '
+{
+    "mappings": {
+        "_doc": {
+            "properties": {
+                "time": {
+                    "type": "date"
+                },
+                "age": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "keyword"
+                }
+            }
+        }
+    }
+}'
+
+
+#add new field in index. example uses adding a date field. (the output of date +"%F %T")
+curl -XPUT -H "Content-Type: application/json" localhost:9200/custom_builds/_mapping -d '
+{
+  "properties": {
+    "timestamp": {
+      "type": "date",
+      "format": "yyyy-MM-dd HH:mm:ss" 
+    }
+  }
+}
+
 
 #Delete an index
 curl -XDELETE 'es.example.com:9200/custom_builds'
