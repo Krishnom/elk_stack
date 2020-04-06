@@ -1,4 +1,4 @@
-#See http://www.omdbapi.com/ for more details
+See http://www.omdbapi.com/ for more details
 import requests
 import json
 import threading

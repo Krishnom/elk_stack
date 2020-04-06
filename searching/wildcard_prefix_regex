@@ -1,0 +1,28 @@
+#Prefix search 
+
+To get all movie whose year start with 20
+$ elk_curl -XGET $local_elk_url/'movie_db/_search?pretty' -d '
+{
+    "query":{
+        "prefix":{
+            "year":"20"
+        }
+    }
+}'
+
+
+#Wildcard search
+To get all movies whose title start with The
+$ elk_curl -XGET $local_elk_url/movie_db/_search?pretty -d '
+{
+    "query":{
+        "wildcard":{
+            "title":"The*"
+        }
+    }
+}' 
+
+
+
+
+

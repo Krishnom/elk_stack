@@ -10,3 +10,14 @@ All of above have an "edit distance" of 1 as there is a typo with one char.
 
 
 
+
+Example Fuzzy query in Elastic Search
+{
+    "query":{
+        "fuzzy":{
+            "title":{"value":"Intrsteller","fuzziness":2}
+            }
+    }
+}
+
+

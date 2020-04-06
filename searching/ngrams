@@ -1,0 +1,46 @@
+Indexing with n-grams(index-time with N-grams)
+
+Consider how word "star" is indexed in various n-grams
+    1-gram(unigram) ['s','t','a','r']
+    2-gram(bigram) ['st','ar']
+    3-gram(trigram) ['sta','r']
+    4-gram ['star']
+
+Note: edge n-grams are built only on the begining of the each term.
+
+Indexing n-grams
+1. Create an autocomplete analyzer
+curl -XPUT localhost:9200/movies?pretty -d '
+{
+    "settings": {
+        "analysis":{
+            "filter":{
+                "autocomplete_filter":{
+                    "type":"edge_gram",
+                    "min_gram": 1,
+                    "max_gram": 20
+                }
+            },
+                "analyzer":{
+                    "autocomplete":{
+                        "type":"custom",
+                        "tokenizer":"standard",
+                        "filter":["lowercase","autocomplete_filter"]
+                    }
+                }
+        }
+    }
+}'
+
+2. Map you field with analyzer
+curl -XPUT 'localhost:9200/movies/_mapping?pretty' -d '
+{
+    "properties":{
+        "title":{
+            "type":"text",
+            "analyzer":"autocomplete"
+        }
+    }
+}
+
+

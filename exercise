@@ -1,0 +1,4 @@
+elk_curl -XPOST localhost:9200/movies/_doc/2 -d '{"genre":["Mystry","Crime"], "year": 2014, "title":"Mom"}
+elk_curl -XGET localhost:9200/movies/_search?q=mom
+elk_curl -XPOST localhost:9200/movies/_doc/2/_update -d '{"doc":{"year":2018}}'
+elk_curl -XDELETE localhost:9200/movies/_doc/2
