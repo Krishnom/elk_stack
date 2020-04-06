@@ -1,0 +1,16 @@
+#download movie dataset
+wget http://files.grouplens.org/datasets/movielens/ml-25m.zip
+
+#download the script
+wget media.sundog-soft.com/es7/MoviesToJson.py
+
+#unzip data
+unzip ml-25m.zip
+
+# Update the datafile path and run script 
+python3 MoviesToJson.py > /tmp/movies.json
+
+#post to elastic search
+curl -H "Content-Type: application/json" localhost:9200/_bulk -XPUT --data-binary @/tmp/movies.json
+
+
