@@ -1,0 +1,6 @@
+1. Standalone script to send bulk data using REST apis. for e.g. see load_imdb-data_to_es.py
+2. Logstash and Beat can stream data from logs, s3, databases etc.
+3. AWS systems stream in data via lamda or kinesis firehose.
+4. Kafka, Spark and more have elasticsearch addons.
+
+
