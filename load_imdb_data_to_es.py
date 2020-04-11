@@ -64,3 +64,7 @@ while entry_count <= (len(entries) + max_thread):
         process_t[i].join()
         pass
 
+
+
+def movies_to_json():
+        file = open("D:\\workspace\\learnings\\github-repos\\elk_stack\\data.tsv", 'r')
