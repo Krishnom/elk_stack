@@ -1,0 +1,9 @@
+#You can skip step 1 to 3 if you have installed elasticsearch or kibana
+
+1. sudo apt-get install apt-transport-https
+2. echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+
+3. sudo apt-get update 
+4. sudo apt-get install logstash
+
+ 

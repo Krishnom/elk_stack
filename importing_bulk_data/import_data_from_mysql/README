@@ -1,0 +1,36 @@
+To import data from mysql, you need
+1. mysql server details like hostname, port, username, password, database and table
+2. JDBC Mysql Connector (get it from https://downloads.mysql.com/archives/c-j/)
+3. logstash config (see logstash-mysql.conf)
+
+
+Steps
+#we need a demo server to import data to
+1. Install mysql server if not installed 
+	sudo apt-get install mysql-server
+2. Download movielens data and unzip 
+	wget http://files.grouplens.org/datasets/movielens/ml-100k.zip 
+	unzip ml-100k.zip
+3. Execute `sudo mysql` and execute below commands to create database, table and adding permission for user	
+	create database movielens;
+	create table movielens.movies (movieId INT PRIMARY KEY NOT NULL, title TEXT, releaseDate DATE);
+	create user 'opaliwal'@'localhost' idenfied by 'opaliwal;
+	grant all priviledges on *.* to 'opaliwal'@'localhost';
+	load data local infile 'ml-100k/u.item' into table movielens.movies charset latin1 fields terminated by '|' (movieID, title, @var3)  set releaseDate = STR_TO_DATE(@var3, '%d-%M-%y');
+
+Note : If load data query fails with "ERROR 3948 (42000): Loading local data is disabled;" Than follow below steps to fix.
+	1. Set the global variables by using this command:
+		mysql> SET GLOBAL local_infile=1;
+		Query OK, 0 rows affected (0.00 sec)
+	
+	2. Quit current server:
+		mysql> quit
+		Bye
+	
+	3. Connect to the server with local-infile system variable :
+		mysql --local-infile=1 -u opaliwal -p opaliwal
+
+
+
+4. Execute below command to start pusing data to elasticsearch as per logstash-mysql.conf 
+	sudo /usr/share/logstash/bin/logstash -f logstash-mysql.conf

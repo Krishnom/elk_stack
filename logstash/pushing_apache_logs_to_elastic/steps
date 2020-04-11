@@ -1,0 +1,3 @@
+1. Copy logstash-apache-logs.conf to /etc/logstash/conf.d/ folder
+2. Run below command
+	sudo /usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/logstash-apache-logs.conf

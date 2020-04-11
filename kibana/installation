@@ -1,8 +1,10 @@
-sudo apt-get install apt-transport-https
-echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
+Note: You can skip step 1 and 2 if you have installed elasticsearch(i.e you have /etc/apt/sources.list.d/elastic-7.x.list already present)
 
-sudo apt-get update && sudo apt-get install kibana
+1. sudo apt-get install apt-transport-https
+2. echo "deb https://artifacts.elastic.co/packages/7.x/apt stable main" | sudo tee -a /etc/apt/sources.list.d/elastic-7.x.list
 
-sudo /bin/systemctl daemon-reload
-sudo /bin/systemctl enable kibana.service
-sudo systemctl start kibana.service
+3. sudo apt-get update && sudo apt-get install kibana
+
+4. sudo /bin/systemctl daemon-reload
+5. sudo /bin/systemctl enable kibana.service
+6. sudo systemctl start kibana.service

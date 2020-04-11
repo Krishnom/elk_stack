@@ -1,0 +1,6 @@
+To use this script
+1. Download https://datasets.imdbws.com/title.basics.tsv.gz
+2. untar the data unsing gunzip i.e. gunzip title.basics.tsv.gz
+3. Update the tsv file path in script. 
+4. Install elasticsearch py module with pip3. "pip3 install elasticsearch"
+4. Run the script using python3 command
